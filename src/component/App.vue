@@ -1,17 +1,15 @@
 <template>
-    <div>
-        {{key}}
-    </div>
+    <router-view></router-view>
 </template>
 
 <script>
     export default {
-        // es6定义对象方法的语法
-        data() {
-            return {
-                key:'nihao'
-            }
-        },
+        
+        // created () {
+        //     // console.log(this);
+        //     this.$axios.get(this.$api.logout).then(res=>console.log(res.message))
+        // }
+        
     }
 </script>
 
