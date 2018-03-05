@@ -11,6 +11,9 @@ import './less/index.less'
 import axios from 'axios' // 不是vue插件，导入之后只能在当前模块使用
 import api, {domain} from './js/api.js' //domain是api的域名
 
+
+
+
 //设置默认域名
 axios.defaults.baseURL = domain
 // 我们是跨域请求的接口, 默认不会携带cookie等信息, 后端需要这些信息来判断登陆状态, 所以要设为true

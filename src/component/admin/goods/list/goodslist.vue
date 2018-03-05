@@ -28,7 +28,7 @@
                 <!-- template自定义表格中内容 -->
                 <template slot-scope="scope">
                     <el-tooltip class="item" effect="dark"  placement="right">
-                        <router-link :to="'goodsedit/'+scope.row.id" >{{scope.row.title}}</router-link>
+                        <router-link :to="'goodsdetail/'+scope.row.id" >{{scope.row.title}}</router-link>
                         <div slot="content">
                             <p>商品货号：{{scope.row.goods_no}}</p>
                             <img width="180" :src="scope.row.imgurl" alt="" >
@@ -53,7 +53,7 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <router-link :to="'goodsedit/'+scope.row.id" >修改</router-link>
+                    <router-link :to="'goodsdetail/'+scope.row.id" >修改</router-link>
                 </template>
             </el-table-column>
         </el-table>
@@ -180,7 +180,7 @@
         }
 
         [class^=el-icon].active {
-            color: #000;
+            color: red;
             font-weight: bold;
         }
 

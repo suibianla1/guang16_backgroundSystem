@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import axios from 'axios'
 
 import Login from '../component/login/Login.vue'
 import Admin from '../component/admin/Admin.vue'
@@ -19,7 +20,7 @@ Vue.use(Router)
 //右侧主体路由配置
 var goods=[
     {name:'goodsList', path:'goodslist', component: GoodsList},
-    { name: 'goodsDetail', path: 'goodsDetail/:id', component: GoodsDetail},
+    { name: 'goodsDetail', path: 'goodsdetail/:id', component: GoodsDetail},
     { name: 'goodsComment', path: 'goodsComment', component: GoodsComment},
 ]
 
@@ -27,7 +28,9 @@ var order ={
     name: 'orderlist', path: 'orderlist', component: Orderlist 
 }
 
-export default new Router({
+
+let router =  new Router({
+    //路由配置 
     routes:[
         {name:'login', path:'/login', component:Login},
         
@@ -35,3 +38,28 @@ export default new Router({
         // {name:'register', path:'/register', component:Register}
     ]
 })
+
+//创建全局路由守卫，判断是否登陆，在路由配置之前执行
+router.beforeEach((to, from, next)=>{
+    Vue.prototype.$axios.get(Vue.prototype.$api.islogin).then((res)=>{
+        // console.log(res.data);
+        // if (to.name == 'login') {
+        //     if (res.data.code == 'logined') {
+        //         next()
+        //     } else {
+        //         next();
+        //     }
+        // } 
+
+        //如果用户未登录，跳转到登陆页面，登陆过就继续操作
+        if (to.name != 'login') {
+            if (res.data.code == 'logined') {
+                next();
+            } else {
+                next({ name: 'login' })
+            }
+        }
+    })
+})
+
+export default router;

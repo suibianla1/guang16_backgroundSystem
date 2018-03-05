@@ -45,7 +45,7 @@ export default {
         rules2: {
             uname: [
                 { required: true, message: '请输入用户名', trigger: 'blur' },
-                { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }
             ],
             upwd: [
                 { required: true, message: '请输入密码', trigger: 'blur' },
@@ -91,19 +91,25 @@ export default {
 </script>
 
 <style scoped lang="less">
+body{
+    
+}
 .login {
-  height: 100%;
-  section {
-    padding-top:30px;
-    padding-right: 30px;
-    width: 400px;
-    height: 200px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 100px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  }
+    height: 100%;
+    background: url(../../imgs/city.jpg) rgba(0, 0, 0, .3);
+    background-size: 100%;
+    section {
+        padding-top:30px;
+        padding-right: 30px;
+        background-color: #fff;
+        width: 400px;
+        height: 200px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 100px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    }
 }
 </style>
