@@ -30,7 +30,7 @@ var order ={
 
 
 let router =  new Router({
-    //路由配置 
+    //路由配置
     routes:[
         {name:'login', path:'/login', component:Login},
         
@@ -43,20 +43,20 @@ let router =  new Router({
 router.beforeEach((to, from, next)=>{
     Vue.prototype.$axios.get(Vue.prototype.$api.islogin).then((res)=>{
         // console.log(res.data);
-        // if (to.name == 'login') {
-        //     if (res.data.code == 'logined') {
-        //         next()
-        //     } else {
-        //         next();
-        //     }
-        // } 
+        if (to.name == 'login') {
+            if (res.data.code == 'logined') {
+                next()
+            } else {
+                next();
+            }
+        } 
 
         //如果用户未登录，跳转到登陆页面，登陆过就继续操作
         if (to.name != 'login') {
             if (res.data.code == 'logined') {
                 next();
             } else {
-                next({ name: 'login' })
+                next({ name: 'login', query: { next: to.fullPath } }); 
             }
         }
     })

@@ -63,7 +63,9 @@ export default {
                     confirmButtonText: '确定',
                     callback: () => {
                         // location.href = 'http://127.0.0.1:8080/#/admin';
-                        this.$router.push({name:'admin'})
+                        // 登陆成功后跳转到用户要跳转到的页面
+                        this.$router.push({ path : this.$route.query.next || '/admin'})
+
                         localStorage.setItem('uname', res.data.message.uname)
                     }
                 })
